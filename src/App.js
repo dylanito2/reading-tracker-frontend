@@ -7,7 +7,6 @@ import createHistory from 'history/createBrowserHistory'
 
 import NotFound from './components/NotFound'
 
-
 class App extends Component {
   render() {
     return (
@@ -21,7 +20,6 @@ class App extends Component {
     );
   }
 }
-
 
 export const history = createHistory()
 export default connect(null, null)(App)
