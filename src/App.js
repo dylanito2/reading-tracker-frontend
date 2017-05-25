@@ -10,10 +10,11 @@ import NotFound from './components/NotFound'
 class App extends Component {
   render() {
     return (
-      <Router history={history}>
+      <Router history={ history }>
         <div>
           <Switch>
-            <Route path='*' component={NotFound} />
+            <Route path="/:schoolId/:classId" component={ StudentsInClass } />
+            <Route path='*' component={ NotFound } />
           </Switch>
         </div>
       </Router>
