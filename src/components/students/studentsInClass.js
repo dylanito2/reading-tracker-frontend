@@ -8,12 +8,12 @@ class StudentsInClass extends Component {
 
   static propTypes = {
       match: PropTypes.object.isRequired,
+      account: PropTypes.object.isRequired
     }
 
   componentWillMount() {
-  let schoolId = this.props.match.params.schoolId
-  let classroomId = this.props.match.params.classId
-  this.props.fetchStudents(schoolId, classroomId)
+    let classroomId = this.props.match.params.classId
+    this.props.fetchStudents(classroomId)
   }
 
   render() {
@@ -24,10 +24,16 @@ class StudentsInClass extends Component {
 
 }
 
+const mapStateToProps = (state) => {
+  return {
+    account: state.Account,
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     fetchStudents: fetchStudents
   }, dispatch)
 }
 
-export default connect(null, mapDispatchToProps)(StudentsInClass)
+export default connect(mapStateToProps, mapDispatchToProps)(StudentsInClass)
