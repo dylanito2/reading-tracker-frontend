@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux'
 import createHistory from 'history/createBrowserHistory'
 
 import StudentsInClass from './components/students/studentsInClass'
+import Classrooms from './components/Classrooms'
 import NotFound from './components/NotFound'
 
 class App extends Component {
@@ -15,6 +16,7 @@ class App extends Component {
         <div>
           <Switch>
             <Route path="/:schoolId/:classId" component={ StudentsInClass } />
+            <Route path="/:schoolId" component={ Classrooms } />
             <Route path='*' component={ NotFound } />
           </Switch>
         </div>
