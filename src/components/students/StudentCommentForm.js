@@ -28,6 +28,9 @@ class StudentCommentForm extends Component {
     const { commentText } = this.state
     e.preventDefault()
     addComment(commentText, student.id)
+    this.setState({
+      commentText: ''
+    })
   }
 
   render () {
