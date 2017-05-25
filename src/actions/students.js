@@ -1,14 +1,14 @@
 import axios from 'axios'
 import api from '../config/api'
 
-export const fetchStudents = () => {
+export const fetchStudents = (schoolId, classroomId) => {
   return (dispatch) => {
     let prefix = api
     axios
-      .get(`${prefix}/${school.id}/${class.id}/students`)
+      .get(`${prefix}/v1/schools/${schoolId}/classrooms/${classroomId}/students`)
       .then(response => {
-        let topics = response.data
-        dispatch({type: 'SET_TOPICS', topics})
+        let students = response.data
+        dispatch({type: 'SET_STUDENTS', students})
       })
       .catch((error) => {
         // Add In Error Catch

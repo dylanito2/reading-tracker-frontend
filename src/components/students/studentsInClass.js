@@ -1,13 +1,19 @@
 import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 import { fetchStudents } from '../../actions/students'
 
 class StudentsInClass extends Component {
 
+  static propTypes = {
+      match: PropTypes.object.isRequired,
+    }
+
   componentWillMount() {
   let schoolId = this.props.match.params.schoolId
-  let classId = this.props.match.params.classId
-  this.props.fetchStudents(topicId, topicSlug)
+  let classroomId = this.props.match.params.classId
+  this.props.fetchStudents(schoolId, classroomId)
   }
 
   render() {

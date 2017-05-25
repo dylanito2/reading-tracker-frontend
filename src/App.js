@@ -5,6 +5,7 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import createHistory from 'history/createBrowserHistory'
 
+import StudentsInClass from './components/students/studentsInClass'
 import NotFound from './components/NotFound'
 
 class App extends Component {
