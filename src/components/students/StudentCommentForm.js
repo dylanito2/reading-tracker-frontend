@@ -7,7 +7,7 @@ import { addComment } from '../../actions/comments'
 class StudentCommentForm extends Component {
 
   state = {
-    commentText: null
+    commentText: ''
   }
 
   static propTypes = {

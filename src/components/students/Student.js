@@ -33,10 +33,22 @@ class Student extends Component {
     }
   }
 
+  renderComments = () => {
+    const { student } = this.props
+    if (student && student.comments.length > 0) {
+      return student.comments.map((comment) => {
+        return <p key={ comment.id }>{ comment.text }</p>
+      })
+    } else {
+      return <p>No Comments Added Yet</p>
+    }
+  }
+
   render() {
     return (
       <div>
         { this.renderStudentInfo() }
+        { this.renderComments() }
       </div>
     )
   }

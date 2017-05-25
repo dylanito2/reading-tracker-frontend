@@ -12,7 +12,8 @@ export const addComment = ( commentText, studentId) => {
     axios
       .post(`${prefix}/v1/students/${studentId}/comments`, comment)
       .then(response => {
-        // Anything?
+        let student = response.data
+        dispatch({type: "SET_STUDENT", student})
       })
       .catch((error) => {
         // Add In Error Catch
