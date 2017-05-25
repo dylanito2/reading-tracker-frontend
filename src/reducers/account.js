@@ -1,6 +1,7 @@
 
 const defaults = {
   schoolId: 1,
+  teacherId: 1,
   name: 'Mr. Teacher',
   email: 'teacher@school.com'
 }

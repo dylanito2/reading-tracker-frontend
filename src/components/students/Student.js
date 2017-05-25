@@ -2,14 +2,16 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
+import StudentCommentForm from './StudentCommentForm'
 import { fetchStudent } from '../../actions/students'
 
 class Student extends Component {
 
   static propTypes = {
       match: PropTypes.object.isRequired,
-      account: PropTypes.object.isRequired,
-      student: PropTypes.object.isRequired
+      fetchStudent: PropTypes.func.isRequired,
+      account: PropTypes.object,
+      student: PropTypes.object
     }
 
   componentWillMount = () => {
@@ -19,11 +21,22 @@ class Student extends Component {
     fetchStudent(classroomId, studentId)
   }
 
-  render() {
+  renderStudentInfo = () => {
+    if (this.props.student) {
     const { student } = this.props
+      return (
+        <div>
+          <h1>{ student.first_name } { student.last_name }</h1>
+          <StudentCommentForm student={ student }/>
+        </div>
+      )
+    }
+  }
+
+  render() {
     return (
       <div>
-        <h1> { student.first_name } { student.last_name }</h1>
+        { this.renderStudentInfo() }
       </div>
     )
   }
