@@ -10,7 +10,8 @@ class StudentsInClass extends Component {
   static propTypes = {
       match: PropTypes.object.isRequired,
       account: PropTypes.object.isRequired,
-      students: PropTypes.array.isRequired
+      students: PropTypes.array.isRequired,
+      fetchStudents: PropTypes.func.isRequired
     }
 
   componentWillMount = () => {
