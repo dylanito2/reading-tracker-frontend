@@ -7,8 +7,8 @@ export const fetchClassrooms = (schoolId, classroomId) => {
     axios
       .get(`${prefix}/v1/schools/${schoolId}/classrooms/${classroomId}/students`)
       .then(response => {
-        let students = response.data
-        dispatch({type: 'SET_STUDENTS', students})
+        let payload = response.data
+        dispatch({type: 'SET_CLASSROOMS', payload})
       })
       .catch((error) => {
         // Add In Error Catch
