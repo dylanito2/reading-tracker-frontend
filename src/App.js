@@ -14,7 +14,7 @@ class App extends Component {
     return (
       <Router history={ history }>
         <Switch>
-            <Route path="/:schoolId" component={ Classrooms } />
+            <Route path="/:schoolId/classrooms" component={ Classrooms } />
             <Route path="/:schoolId/students/:classroomId" component={ StudentsInClass } />
             <Route path="/:classroomId/:studentId/:studentName" component={ Student } />
             <Route path='*' component={ NotFound } />

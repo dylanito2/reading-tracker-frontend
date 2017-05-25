@@ -5,7 +5,7 @@ const Classroom = (props) => (
   <div>
     <Link to={`/${props.schoolId}/${props.classroom.id}`}>
     <button>{props.classroom.name}</button>
-  </Link>
+    </Link>
 </div>
 )
 
