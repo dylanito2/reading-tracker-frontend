@@ -20,7 +20,7 @@ class Classrooms extends Component {
   renderClassrooms = () => {
     let schoolId = this.props.account.schoolId
     return this.props.classrooms.map((classroom) => {
-      return <Classroom classroom={classroom} schoolId={schoolId} />
+      return <Classroom classroom={classroom} schoolId={schoolId} key={classroom.id} />
     })
   }
 

@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import {List, ListItem} from 'material-ui/List'
 
 import StudentTile from './StudentTile'
 import { fetchStudents } from '../../actions/students'
@@ -38,9 +39,9 @@ class StudentsInClass extends Component {
 
   render() {
     return (
-      <div>
-        { this.listStudents() }
-      </div>
+    <List>
+      {this.listStudents()}
+    </List>
     )
   }
 
