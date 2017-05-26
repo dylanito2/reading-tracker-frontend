@@ -32,3 +32,18 @@ export const fetchStudent = (classroomId, studentId) => {
       })
   }
 }
+
+export const fetchStudentReadingLevels = (studentId) => {
+  return (dispatch) => {
+    let prefix = api
+    axios
+      .get(`${prefix}/v1/students/${studentId}/reading_levels`)
+      .then(response => {
+        let readingLevels = response.data
+        dispatch({type: 'SET_READING_LEVEL', readingLevels})
+      })
+      .catch((error) => {
+        // Add In Error Catch
+      })
+  }
+}

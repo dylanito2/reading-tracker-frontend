@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import StudentCommentForm from './StudentCommentForm'
+import StudentReadingLevelChart from './StudentReadingLevelChart'
 import { fetchStudent } from '../../actions/students'
 
 class Student extends Component {
@@ -28,6 +29,7 @@ class Student extends Component {
         <div>
           <h1>{ student.first_name } { student.last_name }</h1>
           <StudentCommentForm student={ student }/>
+          <StudentReadingLevelChart student={ student } />
         </div>
       )
     }
