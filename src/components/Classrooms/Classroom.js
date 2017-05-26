@@ -1,12 +1,20 @@
 import React from 'react'
+import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
 import { Link } from 'react-router-dom'
 
 const Classroom = (props) => (
-  <div>
-    <Link to={`/${props.schoolId}/${props.classroom.id}`}>
-    <button>{props.classroom.name}</button>
+  <Card>
+    <CardHeader
+      title={ props.classroom.name}
+      subtitle={`Grade ${props.classroom.grade}`}
+    />
+    <CardActions>
+      <Link to={`/${props.schoolId}/students/${props.classroom.id}`}>
+      <FlatButton label="View Class" />
     </Link>
-</div>
+  </CardActions>
+</Card>
 )
 
 export default Classroom
