@@ -5,7 +5,7 @@ import { Route, Switch } from 'react-router-dom'
 import createHistory from 'history/createBrowserHistory'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
-import Navbar from './components/Navbar'
+import Navbar from './components/Navbar/Navbar'
 import Classrooms from './components/Classrooms'
 import StudentsInClass from './components/Students/StudentsInClass'
 import Student from './components/Students/Student'
