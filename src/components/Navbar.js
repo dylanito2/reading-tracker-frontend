@@ -16,7 +16,7 @@ class Navbar extends Component  {
               <img alt="ReaderTracker" className="logo" src="" />
             </a>
           </div>
-          <NavLink to={`${account.schoolId}/classrooms`}>All Classes</NavLink>
+          <NavLink to={`/${account.schoolId}/classrooms`}>All Classes</NavLink>
         </div>
       </nav>
     )
