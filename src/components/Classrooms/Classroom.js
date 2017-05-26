@@ -4,7 +4,7 @@ import FlatButton from 'material-ui/FlatButton';
 import { Link } from 'react-router-dom'
 
 const Classroom = (props) => (
-  <Card>
+  <Card style={{width: '400px'}}>
     <CardHeader
       title={ props.classroom.name}
       subtitle={`Grade ${props.classroom.grade}`}
