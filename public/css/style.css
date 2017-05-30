@@ -13,3 +13,12 @@ a:hover {
 a:active {
     text-decoration: none;
 }
+
+#student-card {
+  margin: 0 auto;
+  width: 40%;
+}
+
+.graph {
+  text-align: center;
+}
