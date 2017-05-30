@@ -41,7 +41,6 @@ class Student extends Component {
         <div>
           <h1>{ student.first_name } { student.last_name }</h1>
           <StudentCommentForm student={ student }/>
-          <StudentReadingLevelChart student={ student } />
         </div>
       )
     }
