@@ -2,10 +2,9 @@ import React, { Component, PropTypes } from 'react'
 import AutoComplete from 'material-ui/AutoComplete';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Redirect } from 'react-router-dom'
-import { routerActions } from 'react-router-redux';
+import { Redirect, withRouter } from 'react-router-dom'
+import { push } from 'react-router-redux';
 
-import { store } from '../../store'
 import { fetchStudentsFromTeacher } from '../../actions/students'
 
 class FuzzyStudentSearch extends Component {
@@ -24,13 +23,11 @@ class FuzzyStudentSearch extends Component {
   identifyStudent = (student) => {
     const { students } = this.props
     let studentObject =  students.objects.filter((studentObj) => studentObj.fullName === student)[0]
-    this.redirectToStudent(studentObject)
+    return this.redirectToStudent(studentObject)
   }
 
   redirectToStudent = (student) => {
-    let pathName = `/${student.classroom_id}/${student.id}/${student.first_name + " " + student.last_name}`
-    routerActions.push(pathName)
-  //  <Redirect to={} />
+    this.props.history.push(`/${student.classroom_id}/${student.id}/${student.first_name + "-" + student.last_name}`)
   }
 
   render() {
@@ -61,8 +58,8 @@ class FuzzyStudentSearch extends Component {
 
   const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-      fetchStudentsFromTeacher: fetchStudentsFromTeacher,
+      fetchStudentsFromTeacher: fetchStudentsFromTeacher
     }, dispatch)
   }
 
-  export default connect(mapStateToProps, mapDispatchToProps)(FuzzyStudentSearch)
+  export default withRouter(connect(mapStateToProps, mapDispatchToProps)(FuzzyStudentSearch))
