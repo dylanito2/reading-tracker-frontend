@@ -22,6 +22,14 @@ class Student extends Component {
     fetchStudent(classroomId, studentId)
   }
 
+  componentWillReceiveProps = (newProps) => {
+    const { fetchStudent, match } = newProps
+    let destructuredPath = match.url.split("/")
+    const classroomId = destructuredPath[1]
+    const studentId = destructuredPath[2]
+    fetchStudent(classroomId, studentId)
+  }
+
   renderStudentInfo = () => {
     if (this.props.student) {
     const { student } = this.props
