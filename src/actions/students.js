@@ -39,8 +39,8 @@ export const fetchStudentReadingLevels = (studentId) => {
     axios
       .get(`${prefix}/v1/students/${studentId}/reading_levels`)
       .then(response => {
-        let readingLevels = response.data
-        dispatch({type: 'SET_READING_LEVEL', readingLevels})
+        let dataSeries = response.data
+        dispatch({type: 'SET_READING_LEVEL', dataSeries})
       })
       .catch((error) => {
         // Add In Error Catch
