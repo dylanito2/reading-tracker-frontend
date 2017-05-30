@@ -7,6 +7,7 @@ import Account from './account'
 import Classrooms from './classrooms'
 import StudentSearch from './StudentSearch'
 import ReadingLevel from './reading_level'
+import Toggle from './toggle'
 
 
 const rootReducer = combineReducers({
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   Student,
   ReadingLevel,
   StudentSearch,
+  Toggle,
   router: routerReducer
 
 })
