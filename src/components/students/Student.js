@@ -67,44 +67,57 @@ class Student extends Component {
     }
   }
 
+  currentReadingLevel = () => {
+    const { student } = this.props
+    if ( student ) {
+      const latestConf = student.conferences[student.conferences.length-1]
+      if ( latestConf ) {
+        return latestConf.reading_level
+      } else {
+        return "N/A"
+      }
+    }
+  }
+
   render() {
     return (
       <div id='student-card'>
         <Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange}>
           <CardHeader
             title={this.renderStudentInfo()}
+            subtitle={`Reading Level: ${this.currentReadingLevel()}`}
             avatar="/images/account.svg"
             showExpandableButton={false}
           />
           {/* <CardText>
           </CardText> */}
 
-            <GraphTabs />
-            <CardText expandable={true}>
-            </CardText>
-            <CardActions>
-              {/* <RaisedButton label="Show Some Graph" />
-              <RaisedButton label="Show Some Other Graph" /> */}
-            </CardActions>
-          </Card>
-        </div>
+          <GraphTabs />
+          <CardText expandable={true}>
+          </CardText>
+          <CardActions>
+            {/* <RaisedButton label="Show Some Graph" />
+            <RaisedButton label="Show Some Other Graph" /> */}
+          </CardActions>
+        </Card>
+      </div>
 
-      )
-    }
-
+    )
   }
 
-  const mapStateToProps = (state) => {
-    return {
-      account: state.Account,
-      student: state.Student
-    }
-  }
+}
 
-  const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({
-      fetchStudent: fetchStudent
-    }, dispatch)
+const mapStateToProps = (state) => {
+  return {
+    account: state.Account,
+    student: state.Student
   }
+}
 
-  export default connect(mapStateToProps, mapDispatchToProps)(Student)
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    fetchStudent: fetchStudent
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Student)

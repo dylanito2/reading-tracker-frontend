@@ -24,7 +24,6 @@ export const fetchStudent = (classroomId, studentId) => {
     axios
       .get(`${prefix}/v1/schools/${schoolId}/classrooms/${classroomId}/students/${studentId}`)
       .then(response => {
-        debugger
         let student = response.data
         dispatch({type: 'SET_STUDENT', student})
       })

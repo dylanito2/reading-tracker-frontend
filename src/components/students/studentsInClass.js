@@ -22,9 +22,9 @@ class StudentsInClass extends Component {
   }
 
   currentReadingLevel = (student) => {
-    const { reading_levels } = student
-    if ( reading_levels.length ) {
-      return reading_levels[reading_levels.length - 1]
+    const latestConf = student.conferences[student.conferences.length-1]
+    if ( latestConf ) {
+      return latestConf.reading_level
     } else {
       return "N/A"
     }
