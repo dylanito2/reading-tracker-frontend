@@ -6,6 +6,8 @@ import StudentReadingLevelChart from './StudentReadingLevelChart'
 import StudentOverview from './StudentOverview'
 import NewConference from '../Conferences/NewConference'
 import { fetchStudent } from '../../actions/students'
+import { toggleStudentView } from '../../actions/toggle'
+
 
 class Student extends Component {
 
@@ -13,23 +15,13 @@ class Student extends Component {
     match: PropTypes.object.isRequired,
     fetchStudent: PropTypes.func.isRequired,
     account: PropTypes.object,
-    student: PropTypes.object
+    student: PropTypes.object,
+    toggleStudentView: PropTypes.func
   }
 
-  state = {
-    toggled: false
-  }
-
-  handleToggle = () => {
-    const { toggled } = this.state
-    let newToggle = toggled ? false : true
-    this.setState({
-      toggled: newToggle
-    })
-  }
 
   renderButtonText = () => {
-    const { toggled } = this.state
+    const { toggled } = this.props
     return toggled ?  "Return To Overview" :  "New Conference"
   }
 
@@ -61,12 +53,11 @@ class Student extends Component {
   }
 
   render() {
-    const { toggled } = this.state
-    const { student } = this.props
+    const { student, toggled, toggleStudentView } = this.props
     return (
       <div>
         <h1>{ this.renderStudentName () }</h1>
-        <button type="button" onClick={ this.handleToggle }>{ this.renderButtonText() }</button>
+        <button type="button" onClick={ toggleStudentView }>{ this.renderButtonText() }</button>
         { toggled ? <NewConference student={student} /> : <StudentOverview student={student} renderStudentName={ this.renderStudentName }/> }
       </div>
     )
@@ -77,13 +68,15 @@ class Student extends Component {
 const mapStateToProps = (state) => {
   return {
     account: state.Account,
-    student: state.Student
+    student: state.Student,
+    toggled: state.Toggle
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    fetchStudent: fetchStudent
+    fetchStudent: fetchStudent,
+    toggleStudentView: toggleStudentView
   }, dispatch)
 }
 

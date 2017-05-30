@@ -14,6 +14,7 @@ export const addConference = (comments, readingLevel, studentId) => {
       .then(response => {
         let student = response.data
         dispatch({type: "SET_STUDENT", student})
+        dispatch({type: "TOGGLE_STUDENT_VIEW"})
       })
       .catch((error) => {
         // Add In Error Catch
