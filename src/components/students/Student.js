@@ -2,6 +2,10 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import RaisedButton from 'material-ui/RaisedButton';
+
+import GraphTabs from '../Graphs/GraphTabs'
 import StudentCommentForm from './StudentCommentForm'
 import StudentReadingLevelChart from './StudentReadingLevelChart'
 import { fetchStudent } from '../../actions/students'
@@ -9,11 +13,20 @@ import { fetchStudent } from '../../actions/students'
 class Student extends Component {
 
   static propTypes = {
-      match: PropTypes.object.isRequired,
-      fetchStudent: PropTypes.func.isRequired,
-      account: PropTypes.object,
-      student: PropTypes.object
-    }
+    match: PropTypes.object.isRequired,
+    fetchStudent: PropTypes.func.isRequired,
+    account: PropTypes.object,
+    student: PropTypes.object
+  }
+
+  state = {
+    expanded: false
+  }
+
+  handleExpandChange = (expanded) => {
+    this.setState({expanded: expanded});
+  };
+
 
   componentWillMount = () => {
     const { fetchStudent, match } = this.props
@@ -36,13 +49,10 @@ class Student extends Component {
 
   renderStudentInfo = () => {
     if (this.props.student) {
-    const { student } = this.props
-      return (
-        <div>
-          <h1>{ student.first_name } { student.last_name }</h1>
-          <StudentCommentForm student={ student }/>
-        </div>
-      )
+      const { student } = this.props
+      return student.first_name + ' ' + student.last_name
+      {/* <StudentCommentForm student={ student }/>
+      <StudentReadingLevelChart student={ student } /> */}
     }
   }
 
@@ -59,26 +69,42 @@ class Student extends Component {
 
   render() {
     return (
-      <div>
-        { this.renderStudentInfo() }
-        { this.renderComments() }
-      </div>
-    )
+      <div id='student-card'>
+        <Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange}>
+          <CardHeader
+            title={this.renderStudentInfo()}
+            avatar="/images/account.svg"
+            showExpandableButton={false}
+          />
+          {/* <CardText>
+          </CardText> */}
+
+            <GraphTabs />
+            <CardText expandable={true}>
+            </CardText>
+            <CardActions>
+              {/* <RaisedButton label="Show Some Graph" />
+              <RaisedButton label="Show Some Other Graph" /> */}
+            </CardActions>
+          </Card>
+        </div>
+
+      )
+    }
+
   }
 
-}
-
-const mapStateToProps = (state) => {
-  return {
-    account: state.Account,
-    student: state.Student
+  const mapStateToProps = (state) => {
+    return {
+      account: state.Account,
+      student: state.Student
+    }
   }
-}
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    fetchStudent: fetchStudent
-  }, dispatch)
-}
+  const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+      fetchStudent: fetchStudent
+    }, dispatch)
+  }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Student)
+  export default connect(mapStateToProps, mapDispatchToProps)(Student)
