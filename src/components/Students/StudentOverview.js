@@ -3,6 +3,8 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import RaisedButton from 'material-ui/RaisedButton';
 import GraphTabs from '../Graphs/GraphTabs'
 
+import StudentConferenceGrid from '../Conferences/StudentConferenceGrid'
+
 export default class StudentOverview extends Component {
 
     state = {
@@ -45,7 +47,7 @@ export default class StudentOverview extends Component {
 
 
     render() {
-      const { renderStudentName } = this.props
+      const { renderStudentName, student } = this.props
       return (
         <div id='student-card'>
           <Card expanded={ this.state.expanded } onExpandChange={ this.handleExpandChange }>
@@ -65,6 +67,7 @@ export default class StudentOverview extends Component {
               <RaisedButton label="Show Some Other Graph" /> */}
             </CardActions>
           </Card>
+          { student ? <StudentConferenceGrid student={ student } /> : null }
         </div>
       )
     }
