@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import Chart from 'react-d3-core'
-import LineChart from 'react-d3-basic'
+import {XYPlot, XAxis, YAxis, HorizontalGridLines, LineSeries} from 'react-vis'
 
 import { fetchStudentReadingLevels } from '../../actions/students'
 
@@ -19,16 +18,33 @@ class StudentReadingLevelChart extends Component {
     fetchStudentReadingLevels(student.id)
   }
 
+  // renderChart = () => {
+  //   const { readingLevels } = this.props
+  //   if (readingLevels.length > 0 ) {
+  //   return <XYPlot
+  //     width={300}
+  //     height={300}>
+  //     <HorizontalGridLines />
+  //     <LineSeries
+  //       data={ readingLevels }/>
+  //     <XAxis />
+  //     <YAxis />
+  //   </XYPlot>
+  //   }
+  // }
+
   render() {
     return (
-      <h1> Hi </h1>
+      <div>
+      </div>
     )
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    account: state.Account
+    account: state.Account,
+    readingLevels: state.ReadingLevel
   }
 }
 

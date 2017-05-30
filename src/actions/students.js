@@ -39,8 +39,26 @@ export const fetchStudentReadingLevels = (studentId) => {
     axios
       .get(`${prefix}/v1/students/${studentId}/reading_levels`)
       .then(response => {
-        let readingLevels = response.data
-        dispatch({type: 'SET_READING_LEVEL', readingLevels})
+        let dataSeries = response.data
+        dispatch({type: 'SET_READING_LEVEL', dataSeries})
+      })
+      .catch((error) => {
+        // Add In Error Catch
+      })
+  }
+}
+
+export const fetchStudentsFromTeacher = (teacherId) => {
+  return (dispatch) => {
+    let prefix = api
+    axios
+      .get(`${prefix}/v1/teachers/${teacherId}/students`)
+      .then(response => {
+        let studentObjs = response.data
+        studentObjs.forEach((student) =>  student.first_name + " " + student.last_name)
+        const studentNames = studentObjs.map((student) => student.fullName = student.first_name + " " + student.last_name)
+        let payload = {fullNames: studentNames, objects: studentObjs}
+        dispatch({type: 'SET_STUDENT_MATCHES', payload})
       })
       .catch((error) => {
         // Add In Error Catch

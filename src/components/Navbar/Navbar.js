@@ -1,10 +1,15 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
+import FuzzyStudentSearch from './FuzzyStudentSearch'
 
 class Navbar extends Component  {
+
+  static propTypes = {
+    account: PropTypes.object
+  }
 
   render() {
     const { account } = this.props
@@ -16,7 +21,8 @@ class Navbar extends Component  {
               <img alt="ReaderTracker" className="logo" src="" />
             </a>
           </div>
-          <NavLink to={`${account.schoolId}/classrooms`}>All Classes</NavLink>
+          <NavLink to={`/${account.schoolId}/classrooms`}>All Classes</NavLink>
+          <FuzzyStudentSearch />
         </div>
       </nav>
     )
