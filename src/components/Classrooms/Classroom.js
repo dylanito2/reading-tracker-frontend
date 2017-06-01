@@ -4,20 +4,32 @@ import FlatButton from 'material-ui/FlatButton';
 import { Link } from 'react-router-dom'
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
+import { customClassroomCard, customClassroomCardHeader } from '../../stylesheets/classroom'
+import '../../stylesheets/buttonsAndInputs.css'
+import '../../stylesheets/classroom.css'
+
 injectTapEventPlugin()
 
 const Classroom = (props) => (
-  <Card style={{width: '400px'}}>
-    <CardHeader
-      title={ props.classroom.name}
-      subtitle={`Grade ${props.classroom.grade}`}
-    />
-    <CardActions>
-      <Link to={`/${props.schoolId}/students/${props.classroom.id}`}>
-      <FlatButton label="View Class" backgroundColor='lightgrey' />
-    </Link>
-  </CardActions>
-</Card>
+  <div className="col-md-6 classroom-card">
+    <Card style={customClassroomCard}>
+      <div className="centered-div">
+        <CardHeader
+          title={ props.classroom.name}
+          className="card-header"
+          subtitle={ `Grade ${props.classroom.grade}` }
+          titleStyle = { customClassroomCardHeader }
+        />
+      </div>
+      <div className="centered-div">
+          <CardActions className="view-class">
+            <Link to={ `/${props.schoolId}/students/${props.classroom.id}` }>
+            <FlatButton label="View Class" />
+          </Link>
+        </CardActions>
+    </div>
+  </Card>
+  </div>
 )
 
 export default Classroom

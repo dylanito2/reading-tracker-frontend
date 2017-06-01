@@ -1,0 +1,13 @@
+.classroom-card {
+  height: 200px;
+  position: relative;
+}
+
+.card-header {
+  width: 100%;
+  text-align: center;
+}
+
+.centered-div {
+  margin: 0 auto;
+}

@@ -5,7 +5,7 @@ import { Route, Switch } from 'react-router-dom'
 import createHistory from 'history/createBrowserHistory'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
-import Navbar from './components/Navbar/Navbar'
+import Header from './components/Navbar/Navbar'
 import Classrooms from './components/Classrooms'
 import StudentsInClass from './components/Students/StudentsInClass'
 import Student from './components/Students/Student'
@@ -17,7 +17,7 @@ class App extends Component {
       <MuiThemeProvider>
         <Router history={ history }>
           <div>
-            <Route path="/" component={ Navbar } />
+            <Route path="/" component={ Header } />
             <Switch>
               <Route path="/:schoolId/classrooms" component={ Classrooms } />
               <Route path="/:schoolId/students/:classroomId" component={ StudentsInClass } />
