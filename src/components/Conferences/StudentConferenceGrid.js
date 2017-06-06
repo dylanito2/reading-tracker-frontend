@@ -13,7 +13,16 @@ export default class StudentConferenceGrid extends Component {
   }
 
   state = {
-    conferenceCommentsDisplayed: null,
+    conferenceCommentsDisplayed: 0,
+  }
+
+  renderConferences = () => {
+    const { student } = this.props
+    if (student.conferences.length) {
+      return student.conferences.map((conference) => {
+        return <p><span onClick={this.renderComments.bind(null, conference)}>{conference.date}</span></p>
+      })
+    }
   }
 
   renderComments = (conference) => {
@@ -29,39 +38,11 @@ export default class StudentConferenceGrid extends Component {
     const { student } = this.props
     const { conferenceCommentsDisplayed } = this.state
     return (
-      <div style={styles.root}>
-        <GridList
-          cellHeight={180}
-          cols={3}
-          style={styles.gridList}
-        >
-        <Subheader>Conferences</Subheader>
-        {student.conferences.map((conference) => (
-          <GridTile
-            key={conference.id}
-            title={conference.date}
-            subtitle={<span>Reading Level <b>{conference.reading_level.score}</b></span>}
-            actionIcon={<IconButton onClick={ this.renderComments.bind(null, conference) }><StarBorder  color="white" /></IconButton>}
-            >
-          </GridTile>
-        ))}
-      </GridList>
-      {conferenceCommentsDisplayed !== null ? <ConferenceComments conference={student.conferences[conferenceCommentsDisplayed]} /> : null }
+    <div>
+      { this.renderConferences() }
+      <ConferenceComments conference={student.conferences[conferenceCommentsDisplayed]} />
     </div>
     )
   }
 
-}
-
-const styles = {
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-  },
-  gridList: {
-    width: 800,
-    height: 450,
-    overflowY: 'auto',
-  },
 }

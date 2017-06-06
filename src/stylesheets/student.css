@@ -1,0 +1,18 @@
+.student-header {
+  text-align: center;
+}
+
+.new-conference {
+  background-color: #c23b22;
+  border: none;
+  color: white;
+  height: 50px;
+  margin-bottom: 25px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+#student-card {
+  width: 100%;
+  margin: 0 auto;
+}
