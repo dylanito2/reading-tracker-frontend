@@ -4,7 +4,7 @@ import FlatButton from 'material-ui/FlatButton';
 import { Link } from 'react-router-dom'
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
-import { customClassroomCard, customClassroomCardHeader } from '../../stylesheets/classroom'
+import { customClassroomCard, customClassroomCardHeader, customClassromCardHeaderText } from '../../stylesheets/classroom'
 import '../../stylesheets/buttonsAndInputs.css'
 import '../../stylesheets/classroom.css'
 
@@ -19,12 +19,13 @@ const Classroom = (props) => (
           className="card-header"
           subtitle={ `Grade ${props.classroom.grade}` }
           titleStyle = { customClassroomCardHeader }
+          textStyle={ customClassromCardHeaderText }
         />
       </div>
       <div className="centered-div">
           <CardActions className="view-class">
             <Link to={ `/${props.schoolId}/students/${props.classroom.id}` }>
-            <FlatButton label="View Class" />
+            <FlatButton label="View Class" className="view-class-button" />
           </Link>
         </CardActions>
     </div>

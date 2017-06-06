@@ -1,17 +1,23 @@
 export const customClassroomCard = {
   width: '10%',
-  height: '80%',
+  height: '100%',
   textAlign: "center",
-  backgroundColor: "#c23b22",
+  backgroundColor: "#E0E0E0",
   margin: "0 auto",
   display: "table-cell",
   verticalAlign: "middle",
   align: "center",
+  paddingTop: "15px",
+  paddingBottom: '15px'
 }
 
 export const customClassroomCardHeader = {
   fontWeight: 'bold',
-  textalign: "center",
+  textAlign: "center !important",
   paddingRight: "0 !important",
   margin: "0 auto"
+}
+
+export const customClassromCardHeaderText = {
+paddingRight: '0 !important'
 }

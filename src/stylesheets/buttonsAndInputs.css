@@ -3,7 +3,7 @@
   width: 100%;
   display: table-cell;
   vertical-align: bottom;
-  background: #FFFF8D;
+  background: #c23b22;
 }
 
 
@@ -15,4 +15,8 @@
   background: #F4F4F4;
   box-shadow: none;
   text-align: center;
+}
+
+.view-class-button {
+  color: white !important;
 }

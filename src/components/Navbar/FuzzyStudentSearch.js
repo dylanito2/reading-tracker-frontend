@@ -6,6 +6,7 @@ import { Redirect, withRouter } from 'react-router-dom'
 import { push } from 'react-router-redux';
 
 import { fetchStudentsFromTeacher } from '../../actions/students'
+import { fuzzySearch } from '../../stylesheets/fuzzySearch'
 
 class FuzzyStudentSearch extends Component {
 
@@ -23,7 +24,8 @@ class FuzzyStudentSearch extends Component {
   identifyStudent = (student) => {
     const { students } = this.props
     let studentObject =  students.objects.filter((studentObj) => studentObj.fullName === student)[0]
-    return this.redirectToStudent(studentObject)
+    this.redirectToStudent(studentObject)
+    this.refs[`autocomplete`].setState({searchText:''});
   }
 
   redirectToStudent = (student) => {
@@ -36,10 +38,13 @@ class FuzzyStudentSearch extends Component {
     return (
       <div>
         <AutoComplete
+         ref={`autocomplete`}
          floatingLabelText="Search For A Student"
          filter={ AutoComplete.fuzzyFilter }
          dataSource={ students.fullNames }
          onNewRequest={ this.identifyStudent }
+         inputStyle={ fuzzySearch }
+         floatingLabelStyle={ fuzzySearch }
          maxSearchResults={5}
        />
      </div>
