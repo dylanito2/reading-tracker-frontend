@@ -16,3 +16,17 @@
   width: 100%;
   margin: 0 auto;
 }
+
+.student-info {
+  border: 1px solid black;
+  border-radius: 4px;
+  background-color: #E0E0E0;
+}
+
+.conference-details {
+  margin-top: 80px;
+}
+
+.conference-dropdown {
+  border: 1px solid black;
+}

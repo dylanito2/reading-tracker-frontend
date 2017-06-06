@@ -1,11 +1,12 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import Dropdown from 'react-dropdown'
 
 import StudentReadingLevelChart from './StudentReadingLevelChart'
 import StudentOverview from './StudentOverview'
 import NewConference from '../Conferences/NewConference'
-import StudentConferenceGrid from '../Conferences/StudentConferenceGrid'
+import ConferenceComments from '../Conferences/ConferenceComments'
 import { fetchStudent } from '../../actions/students'
 import { toggleStudentView } from '../../actions/toggle'
 import '../../stylesheets/student.css'
@@ -21,6 +22,9 @@ class Student extends Component {
     toggleStudentView: PropTypes.func
   }
 
+  state = {
+    selectedConference: 0
+  }
 
   renderButtonText = () => {
     const { toggled } = this.props
@@ -32,6 +36,16 @@ class Student extends Component {
     const classroomId = match.params.classroomId
     const studentId = match.params.studentId
     fetchStudent(classroomId, studentId)
+  }
+
+  componentDidMount = () => {
+    const { student } = this.props
+    if (student) {
+      let initialSelected = student.conferences.length - 1
+      this.setState({
+        selectedConference: initialSelected
+      })
+    }
   }
 
   componentWillReceiveProps = (newProps) => {
@@ -49,7 +63,7 @@ class Student extends Component {
     if (this.props.student) {
       const { student } = this.props
       return (
-        <div>
+        <div className="student-info">
           <h1>{student.first_name + ' ' + student.last_name}</h1>
           { this.renderLastConferenceInfo()}
         </div>
@@ -61,9 +75,45 @@ class Student extends Component {
       const { student } = this.props
       const lastConference = student.conferences[student.conferences.length-1]
       return (
-        <p>Current Reading Level: { lastConference.reading_level.score }</p>
-        <p>Last Conference: { lastConference.date }</p>
+        <div>
+          <p><strong>Current Reading Level:</strong> { lastConference.reading_level.score }</p>
+          <p>Last Conference Held On { lastConference.date }</p>
+        </div>
       )
+    }
+
+    renderConferenceDropDown = () => {
+      const { student } = this.props
+      if (student) {
+        return student.conferences.map((conference) => {
+          return { value: conference.id, label: conference.date}
+        })
+      }
+    }
+
+    renderDefaultDropdownValue = () => {
+      const { student } = this.props
+      if (student) {
+        const lastConference = student.conferences[student.conferences.length-1]
+        return { value: lastConference.id, label: lastConference.date}
+      }
+    }
+
+    onSelect = (conference) => {
+      const { student } = this.props
+      let conferenceSelected = student.conferences.filter((con) => con.id == conference.value)[0]
+      let conferenceIndex = student.conferences.indexOf(conferenceSelected)
+      this.setState({
+        selectedConference: conferenceIndex
+      })
+    }
+
+    determineConferenceToShow = () => {
+      const { student } = this.props
+      const { selectedConference } = this.state
+      if (student) {
+        student.conferences[selectedConference]
+      }
     }
 
   render() {
@@ -82,9 +132,16 @@ class Student extends Component {
             </div>
           </div>
           <div className="row">
-          { toggled ? <NewConference student={student} /> : null }
-          <div className="col-md-12">
-            { student ? <StudentConferenceGrid student={ student } /> : null}
+          { toggled ? <NewConference student={ student } /> : null }
+          <div className="col-md-12 col-md-offset-1 conference-details">
+            <h1>Conference Details</h1>
+            <Dropdown
+              options={this.renderConferenceDropDown()}
+              className="conference-dropdown"
+              onChange={this.onSelect}
+              value={this.renderDefaultDropdownValue()}
+              placeholder="Select a conference" />
+            {/* <ConferenceComments conference={this.determineConferenceToShow()} /> */}
           </div>
           </div>
         </div>

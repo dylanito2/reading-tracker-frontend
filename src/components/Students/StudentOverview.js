@@ -14,7 +14,6 @@ export default class StudentOverview extends Component {
 
     static propTypes = {
       student: PropTypes.object,
-      renderStudentName: PropTypes.func.isRequired
     }
 
 
