@@ -39,9 +39,11 @@ class StudentsInClass extends Component {
 
   render() {
     return (
-    <List>
-      {this.listStudents()}
-    </List>
+    <div>
+      <List>
+        {this.listStudents()}
+      </List>
+    </div>
     )
   }
 

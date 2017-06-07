@@ -1,0 +1,33 @@
+.header {
+  background-image: url("./chalkboard.jpg");
+  height: 100px;
+  width: 100%;
+  margin-bottom: 100px;
+}
+
+.navbar-header {
+  height: 100px;
+  width: 100%;
+  display: table;
+}
+
+.navbar-item {
+  display: table-cell !important;
+  vertical-align: middle !important;
+  float: none;
+  text-align: center;
+  background-color: transparent;
+}
+
+.navbar-link {
+  font-size: 1.5em;
+  margin-left: 10px;
+}
+
+.navbar-link-text {
+  color: #f6f4f1;
+}
+
+.logo {
+  height: 80px;
+}

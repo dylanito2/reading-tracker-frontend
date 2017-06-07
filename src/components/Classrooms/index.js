@@ -26,7 +26,7 @@ class Classrooms extends Component {
 
   render() {
     return (
-      <div>{this.renderClassrooms()}</div>
+      <div className="col-md-6 col-md-offset-3">{this.renderClassrooms()}</div>
     )
   }
 

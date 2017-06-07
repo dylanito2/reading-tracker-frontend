@@ -3,7 +3,8 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import RaisedButton from 'material-ui/RaisedButton';
 import GraphTabs from '../Graphs/GraphTabs'
 
-import StudentConferenceGrid from '../Conferences/StudentConferenceGrid'
+import { customStudentCard, customStudentCardTitle } from '../../stylesheets/student'
+import '../../stylesheets/student.css'
 
 export default class StudentOverview extends Component {
 
@@ -13,7 +14,6 @@ export default class StudentOverview extends Component {
 
     static propTypes = {
       student: PropTypes.object,
-      renderStudentName: PropTypes.func.isRequired
     }
 
 
@@ -37,13 +37,12 @@ export default class StudentOverview extends Component {
       if ( student ) {
         const latestConf = student.conferences[student.conferences.length-1]
         if ( latestConf ) {
-          return latestConf.reading_level
+          return latestConf.reading_level.score
         } else {
           return "N/A"
         }
       }
     }
-
 
 
     render() {
@@ -52,10 +51,10 @@ export default class StudentOverview extends Component {
         <div id='student-card'>
           <Card expanded={ this.state.expanded } onExpandChange={ this.handleExpandChange }>
             <CardHeader
-              title={ renderStudentName }
-              subtitle={`Reading Level: ${this.currentReadingLevel()}`}
-              avatar="/images/account.svg"
+              title={`Current Reading Level: ${this.currentReadingLevel()}`}
               showExpandableButton={false}
+              style={ customStudentCard }
+              titleStyle = { customStudentCardTitle }
             />
             {/* <CardText>
             </CardText> */}
@@ -67,7 +66,6 @@ export default class StudentOverview extends Component {
               <RaisedButton label="Show Some Other Graph" /> */}
             </CardActions>
           </Card>
-          { student ? <StudentConferenceGrid student={ student } /> : null }
         </div>
       )
     }
